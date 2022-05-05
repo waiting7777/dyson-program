@@ -1,8 +1,6 @@
 import type { InferGetStaticPropsType } from 'next'
 import Head from 'next/head'
-import axios from 'axios'
-import { HOST } from '../config'
-import type { Product } from '@prisma/client'
+import { getProduct } from './api/product'
 
 const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
@@ -22,10 +20,10 @@ const Home = ({ data }: InferGetStaticPropsType<typeof getStaticProps>) => {
 
 export async function getStaticProps() {
   // Fetch data from external API
-  const res = await axios.get<Product[]>(`${HOST}/api/product`)
+  const data = await getProduct()
 
   // Pass data to the page via props
-  return { props: { data: res.data } }
+  return { props: { data }}
 }
 
 export default Home

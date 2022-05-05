@@ -7,10 +7,14 @@ const prisma = new PrismaClient()
 
 type Data = Product[]
 
+export const getProduct = async () => {
+  return await prisma.product.findMany()
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  const allProduct = await prisma.product.findMany()
+  const allProduct = await getProduct()
   res.status(200).json(allProduct)
 }
