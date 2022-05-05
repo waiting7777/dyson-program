@@ -17,9 +17,6 @@ jobs:
         uses: SpicyPizza/create-envfile@v1.3
         with:
           envkey_DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          directory: <directory_name>
-          file_name: .env
-          fail_on_empty: false
 
       - name: Login in to Docker Hub
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
